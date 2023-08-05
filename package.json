@@ -1,0 +1,29 @@
+{
+  "name": "02-bienes-raices",
+  "version": "1.0.0",
+  "description": "Bienes Raices con Node Js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonioValentinSayago/bienes-raices-node-js.git"
+  },
+  "keywords": [
+    "MVC",
+    "Pug",
+    "Tailwind",
+    "MySQL",
+    "Sequelize"
+  ],
+  "author": "Antonio Valentin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntonioValentinSayago/bienes-raices-node-js/issues"
+  },
+  "homepage": "https://github.com/AntonioValentinSayago/bienes-raices-node-js#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
