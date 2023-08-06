@@ -1,12 +1,15 @@
-//const express = require('express')
 import express from "express";
 import usuarioRoutes from './routes/usuarioRoutes.js'
 
 //Crear la app para el servidor
 const app = express();
 
-//Routing -> Esra funcion solo se ejecuta en tipo GET
-app.use('/', usuarioRoutes)
+//Habilitar Pug
+app.set('view engine', 'pug');
+app.set('views', './views')
+
+//Routing -> Esta funcion solo se ejecuta en tipo GET
+app.use('/auth', usuarioRoutes)
 
 //Definir el puerto para el proyecto 
 const port = 3000;

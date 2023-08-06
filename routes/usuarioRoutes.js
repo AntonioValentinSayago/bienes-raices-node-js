@@ -2,8 +2,12 @@ import express from "express";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('Hola Mundo en Express!');
+router.get('/login', (req, res) => 
+{
+    res.render('auth/login',
+    {
+        autenticado: true
+    });
 });
 
 
