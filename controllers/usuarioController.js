@@ -1,4 +1,3 @@
-
 const formualrioLogin = (req, res) => {
     res.render('auth/login',
     {
@@ -6,6 +5,14 @@ const formualrioLogin = (req, res) => {
     })
 };
 
+const formularioResgistro = (req, res) => {
+    res.render('auth/registro',
+    {
+        
+    })
+};
+
 export {
-    formualrioLogin
+    formualrioLogin,
+    formularioResgistro
 }
