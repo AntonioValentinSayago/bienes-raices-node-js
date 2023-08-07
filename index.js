@@ -8,6 +8,10 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', './views')
 
+//Carpetas Publica  -> contenedor de archivos estaticos como css- js- img
+
+app.use( express.static('public'))
+
 //Routing -> Esta funcion solo se ejecuta en tipo GET
 app.use('/auth', usuarioRoutes)
 
