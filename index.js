@@ -13,7 +13,5 @@ app.use('/auth', usuarioRoutes)
 
 //Definir el puerto para el proyecto 
 const port = 3000;
-app.listen(port, ()=>{
-    console.log(`El servidor esta port: ${port}`);
-});
+app.listen(port, () => console.log(`El servidor esta port: ${port}`));
 

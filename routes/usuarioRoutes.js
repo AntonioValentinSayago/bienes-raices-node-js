@@ -1,14 +1,9 @@
 import express from "express";
+import { formualrioLogin } from "../controllers/usuarioController";
 
 const router = express.Router();
 
-router.get('/login', (req, res) => 
-{
-    res.render('auth/login',
-    {
-        autenticado: true
-    });
-});
+router.get('/login', formualrioLogin);
 
 
 export default router;
