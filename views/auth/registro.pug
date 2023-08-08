@@ -2,13 +2,13 @@ extends ../layout/index
 
 block  contenido
     div.py-10
-        h1.text-4xl.font-extrabold.text-center Bienes  
+        h1.text-4xl.font-extrabold.text-center.text-slate-700 Bienes  
             span.font-normal Rainces
-        h2.text-center.text-2xl.font-extrabold= pagina
+        h2.text-slate-700.text-center.text-2xl.font-extrabold= pagina
 
         .mt-8.mx-auto.max-w-md
-            .bg-white.py-8.px-4.shadow
-                form.space-y-5
+            .bg-slate-900.py-8.px-4.shadow
+                form.space-y-5(method="POST" action="/auth/registro")
                     div 
                         label.block.text-sm.uppercase.text-gray.text-gray-500.mb-2.font-bold(for="nombre") Tu nombre
                         input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Nombre" type="text" name="nombre")
@@ -20,5 +20,9 @@ block  contenido
                         input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Nombre" type="password" name="password")
                         label.block.text-sm.uppercase.text-gray.text-gray-500.mb-2.font-bold.mt-2(for="repetir-password") Tu Password
                         input#repetir-password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu password" type="password" name="repetir-password")
-                    
+
+                    div.flex.item-center.justify-between 
+                        a.text-gray-500.text-xs(href="/auth/login") ¿Ya tienes cuenta? Inicia Sesión 
+                        a.text-gray-500.text-xs(href="/auth/olvide-password") Olvide mi password
+                        
                     input(class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold-300 py-3 cursor-pointer" type="submit" value="Crear Cuenta")
