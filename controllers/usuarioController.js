@@ -1,7 +1,9 @@
+import Usuario from '../models/Usuario.js';
+
 const formualrioLogin = (req, res) => {
     res.render('auth/login',
     {
-        autenticado: true
+        pagina: 'Iniciar Sesión'
     })
 };
 
@@ -12,7 +14,24 @@ const formularioResgistro = (req, res) => {
     })
 };
 
+const registrar = async (req, res) => {
+    
+    const usuario = await Usuario.create(req.body)
+
+    res.json(usuario)
+
+}
+
+const formularioOlvidePassword = (req, res) => {
+    res.render('auth/olvide-password', 
+    {
+        pagina: 'Recupera tu acceso a Bienes Raices'
+    })
+};
+
 export {
     formualrioLogin,
-    formularioResgistro
+    formularioResgistro,
+    registrar,
+    formularioOlvidePassword
 }
