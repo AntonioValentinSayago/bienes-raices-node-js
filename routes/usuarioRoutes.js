@@ -1,5 +1,9 @@
 import express from "express";
-import { formualrioLogin, formularioResgistro, formularioOlvidePassword, registrar } from "../controllers/usuarioController.js";
+import { formualrioLogin, 
+        formularioResgistro,
+        formularioOlvidePassword, 
+        registrar }
+         from "../controllers/usuarioController.js";
 
 const router = express.Router();
 
