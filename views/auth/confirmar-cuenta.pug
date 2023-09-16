@@ -1,0 +1,8 @@
+extends ../layout/index
+
+block  contenido
+    div.mt-2
+        h1.text-4xl.font-extrabold.text-center.text-slate-700 Bienes  
+            span.font-normal Raices
+    div(class="bg-white shrink py-8 px-4 rounded-lg max-w-md mx-auto")
+        p( class= error ? 'bg-red-500' : 'bg-green-500' ).py-2.px-5.rounded-lg.w-full.font-bold.text-center.uppercase=mensaje
