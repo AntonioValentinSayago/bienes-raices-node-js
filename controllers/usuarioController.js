@@ -1,5 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js';
+import { generarId } from '../helpers/tokes.js';
+import { emailRegistro } from '../helpers/emails.js';
 
 const formualrioLogin = (req, res) => {
     res.render('auth/login',
@@ -55,12 +57,43 @@ const registrar = async (req, res) => {
         })
     }
     
-    await Usuario.create({
+    const usuario = await Usuario.create({
         nombre,
         email,
         password,
-        token: 123
+        token: generarId()
     })
+
+    //? Enviar EMAIL de confirmacion
+    emailRegistro({
+        nombre: usuario.nombre,
+        email: usuario.email,
+        token: usuario.token
+    })
+
+    // ? Mostrar mensaje de confirmacion
+    res.render('templates/mensaje',{
+        pagina: 'Cuenta Creada Correctamente',
+        mensaje: 'Te enviamos un correo para confirmar tu cuenta'
+    })
+
+}
+
+//? Funcion para validar una cuenta
+const confirmar = async( req, res ) => {
+
+    const { token } = req.params
+
+    //? Verificar si el token es valido
+    const usuario = await Usuario.findOne( { where: { token } })
+
+    if (!usuario) {
+        return res.render('auth/confirmar-cuenta', {
+            pagina: 'Error al confirmar tu cuenta',
+            mensaje: 'Hubo un erro al confirmar tu cuenta',
+            error: true
+        })
+    }
 
 }
 
@@ -75,5 +108,6 @@ export {
     formualrioLogin,
     formularioResgistro,
     registrar,
+    confirmar,
     formularioOlvidePassword
 }
