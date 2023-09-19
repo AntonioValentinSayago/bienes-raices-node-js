@@ -1,5 +1,6 @@
 import express from "express";
 import { formualrioLogin, 
+        autenticar,
         formularioResgistro,
         formularioOlvidePassword, 
         registrar,
@@ -13,6 +14,8 @@ import { formualrioLogin,
 const router = express.Router();
 
 router.get('/login', formualrioLogin);
+router.post('/login', autenticar);
+
 router.get('/registro', formularioResgistro)
 router.post('/registro', registrar)
 
