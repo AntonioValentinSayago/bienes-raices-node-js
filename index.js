@@ -1,5 +1,9 @@
 import express from "express";
+import cookieParser from 'cookie-parser'
+import csrf from 'csurf';
+
 import usuarioRoutes from './routes/usuarioRoutes.js'
+import propiedadesRoutes from './routes/propiedadesRoutes.js'
 import db from './config/db.js'
 
 //Crear la app para el servidor
@@ -7,6 +11,12 @@ const app = express();
 
 // Habilita la lectura de datos de los fomrularios
 app.use(express.urlencoded({extended: true}));
+
+// habilitamos cookieParre
+app.use( cookieParser( ))
+
+// habilitar csrf
+app.use( csrf({cookie: true}) )
 
 //conexion a la base de datos
 try {
@@ -26,6 +36,7 @@ app.use( express.static('public'))
 
 //Routing -> Esta funcion solo se ejecuta en tipo GET
 app.use('/auth', usuarioRoutes)
+app.use('/', propiedadesRoutes)
 
 //Definir el puerto para el proyecto 
 const port = process.env.PORT || 3000;
