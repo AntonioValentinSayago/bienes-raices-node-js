@@ -1,15 +1,72 @@
 import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js';
 import bcrypt from 'bcrypt'
-import { generarId } from '../helpers/tokes.js';
+import { generarId , generarJWT } from '../helpers/tokes.js';
 import { emailRegistro, emailOlvidePassword } from '../helpers/emails.js';
 
 const formualrioLogin = (req, res) => {
     res.render('auth/login',
         {
-            pagina: 'Iniciar Sesión'
+            pagina: 'Iniciar Sesión',
+            csrfToken: req.csrfToken(),
         })
 };
+
+const autenticar = async (req, res) => {
+
+    //! Validacion
+    await check('email').isEmail().withMessage('Eso no parece un email').run(req)
+    await check('password').notEmpty().withMessage('El Password es Obligatorio').run(req)
+
+    let resultado = validationResult(req)
+
+    //Verificar que el resultado este Vacio
+    if (!resultado.isEmpty()) {
+
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesion',
+            csrfToken: req.csrfToken(),
+            errores: resultado.array(),
+        })
+    }
+
+    // Todo: comprobar si el usuario existe
+    const { email, password } = req.body
+    const usuario = await Usuario.findOne({ where: { email: email } })
+    if (!usuario) {
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesion',
+            csrfToken: req.csrfToken(),
+            errores: [{ msg: ' El usuario no Existe'}],
+        })
+    }
+
+    if(!usuario.confirmado){
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesion',
+            csrfToken: req.csrfToken(),
+            errores: [{ msg: 'Tu cuenta no ha sido confirmada' }],
+        })
+    }
+
+    // Revisar el Password 
+    if (!usuario.verificarPassword(password)) {
+        return res.render('auth/login', {
+            pagina: 'Iniciar Sesion',
+            csrfToken: req.csrfToken(),
+            errores: [{ msg: 'El password es Incorrecto' }],
+        })
+    }
+
+    // ! Autenticar al Usuario
+    const token = generarJWT(usuario.id)
+    // Todo: Alacenar en el Cookie
+    return res.cookie('_token', token, {
+        httpOnly: true,
+        //secure: true
+    }).redirect('/mis-propiedades')
+
+}
 
 const formularioResgistro = (req, res) => {
 
@@ -224,6 +281,7 @@ const nuevoPassword = async (req, res) => {
 
 export {
     formualrioLogin,
+    autenticar,
     formularioResgistro,
     registrar,
     confirmar,
