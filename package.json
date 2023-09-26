@@ -9,7 +9,7 @@
     "start": "node ./index.js ",
     "server": "nodemon index.js",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
-    "js": "webpack",
+    "js": "webpack --watch",
     "dev": "concurrently \"npm run css\" \"npm run js\" ",
     "db:importar": "node ./seed/seeder.js -i",
     "db:eliminar": "node ./seed/seeder.js -e"
@@ -20,7 +20,7 @@
   },
   "keywords": [
     "MVC",
-    "Pug",
+    "Pug", 
     "Tailwind",
     "MySQL",
     "Sequelize"
