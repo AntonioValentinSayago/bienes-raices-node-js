@@ -1,7 +1,8 @@
 import express from 'express';
 import { body } from 'express-validator';
-import {admin, crear, guardar} from '../controllers/propíedadController.js';
+import {admin, crear, guardar, agregarImagen, almacenarImagenen } from '../controllers/propíedadController.js';
 import protegerRuta from '../middleware/protegerRuta.js';
+import upload from '../middleware/subirImagen.js';
 
 const router = express.Router();
 
@@ -20,6 +21,14 @@ router.post('/propiedades/crear',
     body('wc').isNumeric().withMessage('Selecciona la Cantidad de Baños'),
     body('lat').notEmpty().withMessage('Ubica la Propiedad en el Mapa'),
     guardar
+)
+
+router.get('/propiedades/agregar-imagen/:id', protegerRuta,agregarImagen)
+
+router.post('/propiedades/agregar-imagen/:id', 
+    protegerRuta, 
+    upload.single('imagen'),
+    almacenarImagenen
 )
 
 export default router
