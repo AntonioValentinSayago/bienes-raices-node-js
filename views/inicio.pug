@@ -1,0 +1,16 @@
+extends ./layout/app
+
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+
+block contenido
+    div(class="py-5 ")
+        h1(class="text-center text-4xl font-extrabold") Ubicación en el Mapa
+
+
+        div(id="mapa-inicio" class="h-[600px] mt-5")
+
+block scripts
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="/js/mapaInicio.js")
