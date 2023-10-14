@@ -12,4 +12,4 @@
     L.marker([lat, lng])
         .addTo(mapa)
         .bindPopup(titulo)
-})
+})()
