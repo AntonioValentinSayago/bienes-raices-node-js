@@ -1,15 +1,15 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { admin, crear, guardar, agregarImagen, almacenarImagenen, editar, guardarCambios, eliminar, mostrarPropiedad, enviarMensaje } from '../controllers/propíedadController.js';
+import { admin, crear, guardar, agregarImagen, almacenarImagenen, editar, guardarCambios, eliminar, mostrarPropiedad, enviarMensaje, verMensajes } from '../controllers/propíedadController.js';
 import protegerRuta from '../middleware/protegerRuta.js';
 import upload from '../middleware/subirImagen.js';
 import identificarUsuario from '../middleware/identificarUsuario.js';
 
 const router = express.Router();
 
-router.get('/mis-propiedades',protegerRuta, admin)
+router.get('/mis-propiedades', protegerRuta, admin)
 router.get('/propiedades/crear', protegerRuta, crear)
-router.post('/propiedades/crear', 
+router.post('/propiedades/crear',
     protegerRuta,
     body('titulo').notEmpty().withMessage('El Titulo del Anuncio es Obligatorio'),
     body('descripcion')
@@ -24,20 +24,20 @@ router.post('/propiedades/crear',
     guardar
 )
 
-router.get('/propiedades/agregar-imagen/:id', protegerRuta,agregarImagen)
+router.get('/propiedades/agregar-imagen/:id', protegerRuta, agregarImagen)
 
-router.post('/propiedades/agregar-imagen/:id', 
-    protegerRuta, 
+router.post('/propiedades/agregar-imagen/:id',
+    protegerRuta,
     upload.single('imagen'),
     almacenarImagenen
 )
 
-router.get('/propiedades/editar/:id', 
+router.get('/propiedades/editar/:id',
     protegerRuta,
     editar
 )
 
-router.post('/propiedades/editar/:id', 
+router.post('/propiedades/editar/:id',
     protegerRuta,
     body('titulo').notEmpty().withMessage('El Titulo del Anuncio es Obligatorio'),
     body('descripcion')
@@ -54,7 +54,7 @@ router.post('/propiedades/editar/:id',
 
 router.post('/propiedades/eliminar/:id',
     protegerRuta,
-    eliminar 
+    eliminar
 )
 
 
@@ -67,8 +67,13 @@ router.get('/propiedad/:id',
 //* Area publica- Frontend (Enviar Mnesaje el Vendedor)
 router.post('/propiedad/:id',
     identificarUsuario,
-    body('mensaje').isLength({min: 20}).withMessage('El Mensaje no puede ir vacio o es muy corto'),
+    body('mensaje').isLength({ min: 20 }).withMessage('El Mensaje no puede ir vacio o es muy corto'),
     enviarMensaje
+)
+
+router.get('/mensajes/:id',
+    protegerRuta,
+    verMensajes
 )
 
 export default router
