@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { admin, crear, guardar, agregarImagen, almacenarImagenen, editar, guardarCambios, eliminar, mostrarPropiedad } from '../controllers/propíedadController.js';
+import { admin, crear, guardar, agregarImagen, almacenarImagenen, editar, guardarCambios, eliminar, mostrarPropiedad, enviarMensaje } from '../controllers/propíedadController.js';
 import protegerRuta from '../middleware/protegerRuta.js';
 import upload from '../middleware/subirImagen.js';
 import identificarUsuario from '../middleware/identificarUsuario.js';
@@ -58,10 +58,17 @@ router.post('/propiedades/eliminar/:id',
 )
 
 
-//! Area publica- Frontend
+//* Area publica- Frontend
 router.get('/propiedad/:id',
     identificarUsuario,
     mostrarPropiedad
+)
+
+//* Area publica- Frontend (Enviar Mnesaje el Vendedor)
+router.post('/propiedad/:id',
+    identificarUsuario,
+    body('mensaje').isLength({min: 20}).withMessage('El Mensaje no puede ir vacio o es muy corto'),
+    enviarMensaje
 )
 
 export default router
