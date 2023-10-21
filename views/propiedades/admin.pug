@@ -1,5 +1,8 @@
 extends ../layout/admin
 
+block styles    
+    meta(name="csrf-token" content=csrfToken)
+
 block contenido 
     .py-10
         h1.text-4xl.my-10.font-extrabold.text-center Bienes
@@ -54,3 +57,7 @@ block contenido
                                     a(href=`/mis-propiedades?pagina=${n}` class=`${paginaActual == n ? 'bg-indigo-50 border-indigo-500 text-indigo-600'  : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50 ' } relative inline-flex items-center px-4 py-2 border text-sm font-medium`) #{n++}
         else 
             p.text-center.text-red-700 No Hay Propiedades
+
+
+block scripts 
+    script(src="/js/cambiarEstado.js")
