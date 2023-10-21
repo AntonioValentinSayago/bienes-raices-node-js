@@ -1,24 +1,27 @@
-# Nombre del Proyecto
+# Bienes Raices 1.0.0 
 
-Breve descripción o introducción a tu proyecto.
+Proyecto de Bienes Raices, con NodeJs y MySQL, que nos permite publicar propiedades, teniendo las funcionalidades de un CRUD
 
-## Tabla de Contenidos
+## Tabla de Contenido
 
-- [Características](#características)
-- [Capturas de Pantalla](#capturas-de-pantalla)
+- [Requisitos](#Requisitos)
+- [Demo](#Demo)
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
 
-## Características
+## Requisitos
 
-Enumera aquí las principales características de tu proyecto.
+- Node.js (versión 19.4.0)
+- MySQL (versión 8.0)
+- Tailwind (versión 3)
 
-## Capturas de Pantalla
+## Demo
 
-Si es relevante, puedes incluir capturas de pantalla o imágenes relacionadas con tu proyecto.
+![Panel Prinicipal](public/img/demo.png)
+
 
 ## Requisitos
 
