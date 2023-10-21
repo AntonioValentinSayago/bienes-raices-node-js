@@ -7,7 +7,8 @@ import { formualrioLogin,
         confirmar,
         resetPassword,
         comprobarToken,
-        nuevoPassword
+        nuevoPassword,
+        cerrarSesion
  }
          from "../controllers/usuarioController.js";
 
@@ -15,6 +16,9 @@ const router = express.Router();
 
 router.get('/login', formualrioLogin);
 router.post('/login', autenticar);
+
+// * Cerrar Sesion del Usuario
+router.post('/cerrar-sesion', cerrarSesion)
 
 router.get('/registro', formularioResgistro)
 router.post('/registro', registrar)

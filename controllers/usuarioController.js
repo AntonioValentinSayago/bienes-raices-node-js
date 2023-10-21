@@ -1,7 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js';
 import bcrypt from 'bcrypt'
-import { generarId , generarJWT } from '../helpers/tokes.js';
+import { generarId, generarJWT } from '../helpers/tokes.js';
 import { emailRegistro, emailOlvidePassword } from '../helpers/emails.js';
 
 const formualrioLogin = (req, res) => {
@@ -37,11 +37,11 @@ const autenticar = async (req, res) => {
         return res.render('auth/login', {
             pagina: 'Iniciar Sesion',
             csrfToken: req.csrfToken(),
-            errores: [{ msg: ' El usuario no Existe'}],
+            errores: [{ msg: ' El usuario no Existe' }],
         })
     }
 
-    if(!usuario.confirmado){
+    if (!usuario.confirmado) {
         return res.render('auth/login', {
             pagina: 'Iniciar Sesion',
             csrfToken: req.csrfToken(),
@@ -68,6 +68,11 @@ const autenticar = async (req, res) => {
 
 }
 
+
+//* CERRAR SESION
+const cerrarSesion = (req, res) => {
+    return res.clearCookie('_token').status(200).redirect('/auth/login')
+}
 const formularioResgistro = (req, res) => {
 
     res.render('auth/registro',
@@ -224,7 +229,7 @@ const resetPassword = async (req, res) => {
 
 }
 
-const comprobarToken = async(req, res) => {
+const comprobarToken = async (req, res) => {
 
     const { token } = req.params;
     const usuario = await Usuario.findOne({ where: { token } })
@@ -265,16 +270,16 @@ const nuevoPassword = async (req, res) => {
     const { token } = req.params
     const { password } = req.body
 
-    const usuario = await Usuario.findOne({ where: { token }})
+    const usuario = await Usuario.findOne({ where: { token } })
 
     const salt = await bcrypt.genSalt(10)
-    usuario.password = await bcrypt.hash( password, salt )
+    usuario.password = await bcrypt.hash(password, salt)
     usuario.token = null
 
     await usuario.save()
 
     res.render('auth/confirmar-cuenta', {
-        pagina:'Password Restablecido',
+        pagina: 'Password Restablecido',
         mensaje: 'El password se guardo correctamente'
     })
 }
@@ -282,6 +287,7 @@ const nuevoPassword = async (req, res) => {
 export {
     formualrioLogin,
     autenticar,
+    cerrarSesion,
     formularioResgistro,
     registrar,
     confirmar,
