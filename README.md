@@ -23,9 +23,11 @@ Proyecto de Bienes Raices, con NodeJs y MySQL, que nos permite publicar propieda
 
 ## Instalación
 
-Instalación de las dependencias.
+Descarga de las dependencias.
 
-`npm install`
+```bash
+npm install
+```
 
 ## Uso
 
