@@ -6,7 +6,6 @@ Proyecto de Bienes Raices, con NodeJs y MySQL, que nos permite publicar propieda
 
 - [Requisitos](#Requisitos)
 - [Demo](#Demo)
-- [Requisitos](#requisitos)
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Contribución](#contribución)
@@ -22,14 +21,12 @@ Proyecto de Bienes Raices, con NodeJs y MySQL, que nos permite publicar propieda
 
 ![Panel Prinicipal](public/img/demo.png)
 
-
-## Requisitos
-
-Indica los requisitos necesarios para instalar y utilizar tu proyecto. Por ejemplo, lenguaje de programación, bibliotecas, dependencias, etc.
-
 ## Instalación
 
-Proporciona instrucciones detalladas sobre cómo instalar tu proyecto. Puedes incluir comandos o pasos necesarios.
+Instalación de las dependencias.
+
+```bash
+npm install
 
 ## Uso
 
