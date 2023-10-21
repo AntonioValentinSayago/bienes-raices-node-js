@@ -25,8 +25,7 @@ Proyecto de Bienes Raices, con NodeJs y MySQL, que nos permite publicar propieda
 
 Instalación de las dependencias.
 
-```bash
-npm install
+`npm install`
 
 ## Uso
 
