@@ -1,4 +1,4 @@
-# Bienes Raices 1.0.1
+# Bienes Raices 1.0.2
 
 Proyecto de Bienes Raices, con NodeJs y MySQL, que nos permite publicar propiedades, teniendo las funcionalidades de un CRUD
 
